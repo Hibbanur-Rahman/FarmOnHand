@@ -15,7 +15,7 @@ export default function Admin() {
     Cookies.remove("token");
    toast.success("logout successfully");
    setTimeout(() => {
-     window.location.href = "/";
+     window.location.href = "/FarmOnHand/#/";
    }, 1000);
  };
   return (
