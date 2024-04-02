@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import Cookies from "js-cookie";
 import { decode } from "jwt-js-decode";
 
 import Container from "react-bootstrap/Container";
@@ -16,7 +15,7 @@ function CustomNavbar() {
   const [profileLink, setProfileLink] = useState(null);
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    const token = localStorage.getItem("token");
     console.log("isUser", isUser);
     console.log("token", token);
     if (token) {
@@ -26,7 +25,7 @@ function CustomNavbar() {
     } else {
       setIsUser(false);
     }
-  }); // Only run the effect once, when the component mounts
+  });
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary border rounded my-3">

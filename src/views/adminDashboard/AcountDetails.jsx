@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import { decode } from "jwt-js-decode";
 import { useEffect, useState } from "react";
 import { Form, Row, Col, Card } from "react-bootstrap";
@@ -16,7 +15,7 @@ export default function AccountDetails() {
   }, []);
   const handleAccountDetails = () => {
     try {
-      const token = Cookies.get("token");
+      const token = localStorage.getItem("token");
       const decoded = decode(token);
       const username = decoded.payload.user.username.split(" ");
       setUserDetails({

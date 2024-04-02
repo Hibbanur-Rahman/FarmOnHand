@@ -6,13 +6,12 @@ import Dashboard from './Dashboard';
 import Orders from './Orders';
 import AccountDetails from './AcountDetails';
 import Address from './Address';
-import Cookies from 'js-cookie';
 import {toast} from 'react-toastify'
 
 export default function User() {
   const location = useLocation();
   const handleLogout = () => {
-     Cookies.remove("token");
+    localStorage.removeItem("token");
     toast.success("logout successfully");
     setTimeout(() => {
       window.location.href = "/FarmOnHand/#/";

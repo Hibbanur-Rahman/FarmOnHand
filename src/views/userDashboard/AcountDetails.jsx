@@ -1,7 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { Form, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import { decode } from "jwt-js-decode";
 
 export default function AccountDetails() {
@@ -12,15 +11,16 @@ export default function AccountDetails() {
     username: "",
   });
   const handleUserDetails = () => {
-    const token = Cookies.get("token");
-    const jwtDecode = decode(token);
-    const userName = jwtDecode.payload.user.username.split(" ");
-    setUserDetails({
-      email: jwtDecode.payload.user.email,
-      username: jwtDecode.payload.user.username,
-      firstName: jwtDecode.payload.user.firstname,
-      lastName:jwtDecode.payload.user.lastname,
-    });
+    const token = localStorage.getItem("token");
+    if (token) {
+      const jwtDecode = decode(token);
+      setUserDetails({
+        email: jwtDecode.payload.user.email,
+        username: jwtDecode.payload.user.username,
+        firstName: jwtDecode.payload.user.firstname,
+        lastName: jwtDecode.payload.user.lastname,
+      });
+    }
   };
   useEffect(() => {
     handleUserDetails();

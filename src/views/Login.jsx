@@ -3,7 +3,6 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 import VARIABLES from "../../environmentVariables";
 function Login() {
   const [validated, setValidated] = useState(false);
@@ -25,7 +24,7 @@ function Login() {
         );
         if (response.status === 200) {
           const token = response.data.data.token;
-          Cookies.set("token", token, { expires: 1 });
+          localStorage.setItem("token", token);
           console.log("Login Successful and the user:", response.data);
           toast.success("Login successful!!");
           setUserData({
