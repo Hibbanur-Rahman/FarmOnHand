@@ -2,6 +2,7 @@ import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
 
 import "../App.css"
 import "../assets/styles/style-Footer.css"
+import { Link } from "react-router-dom";
 
 
 function Footer() {
@@ -22,10 +23,15 @@ function Footer() {
                             </h4>
                             <ul className="list-unstyled">
                                 <li>
-                                    Vegetables
+                                    <Link to='/vegetables' className="text-white text-decoration-none">
+                                        Vegetables
+                                    </Link>
                                 </li>
                                 <li>
-                                    Fruits
+                                    <Link to='/fruits' className="text-white text-decoration-none">
+                                        Fruits
+                                    </Link>
+
                                 </li>
                                 <li>
                                     Organic foods
@@ -33,7 +39,9 @@ function Footer() {
                                 <li>
                                     Dairy
                                 </li>
-
+                                <Link to='/contact' className="text-white text-decoration-none">
+                                        Contact
+                                    </Link>
                             </ul>
                         </Col>
                         <Col md={6} lg={3}>

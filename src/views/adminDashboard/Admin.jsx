@@ -12,7 +12,7 @@ import {toast} from 'react-toastify'
 export default function Admin() {
   const location = useLocation();
   const handleLogout = () => {
-    Cookies.remove("token");
+    localStorage.removeItem("token");
    toast.success("logout successfully");
    setTimeout(() => {
      window.location.href = "/FarmOnHand/#/";

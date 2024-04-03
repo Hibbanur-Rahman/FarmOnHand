@@ -1,4 +1,4 @@
-import {Routes,Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import CustomNavbar from './components/CustomNavbar'
 import Home from './views/Home'
@@ -13,22 +13,27 @@ import Contact from './views/Contact'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import User from './views/userDashboard/User'
+import Vegetables from './views/Vegetables'
+import Fruits from './views/Fruits'
 
 function App() {
 
   return (
     <>
       <Container>
-        <CustomNavbar/>
+        <CustomNavbar />
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/product-details/:productId' element={<ProductDetails/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/contact' element={<Contact/>}/>
-          <Route path='/register' element={<Register/>}/>
+          <Route path='/' element={<Home />} />
+          <Route path='/product-details/:productId' element={<ProductDetails />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/register' element={<Register />} />
           <Route path="/cart/:productId" element={<Cart />} />
-          <Route path="/admin/*" element={<Admin/>} />
-          <Route path="/user/*" element={<User/>} />
+          <Route path="/admin/*" element={<Admin />} />
+          <Route path="/user/*" element={<User />} />
+          <Route path="/vegetables" element={<Vegetables />} />
+          <Route path="/fruits" element={<Fruits />} />
+
 
         </Routes>
       </Container>

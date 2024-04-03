@@ -16,8 +16,6 @@ function CustomNavbar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("isUser", isUser);
-    console.log("token", token);
     if (token) {
       let jwt = decode(token);
       setIsUser(true);
@@ -25,7 +23,7 @@ function CustomNavbar() {
     } else {
       setIsUser(false);
     }
-  });
+  }, []);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary border rounded my-3">
@@ -49,18 +47,36 @@ function CustomNavbar() {
               <NavLink to="/" className="nav-link">
                 Home
               </NavLink>
+              <NavLink to="/vegetables" className="nav-link">
+                Vegetables
+              </NavLink>
+              <NavLink to="/fruits" className="nav-link">
+                Fruits
+              </NavLink>
               <NavLink to="/contact" className="nav-link">
                 Contact us
               </NavLink>
             </Nav>
             {isUser ? (
-              <Link className="text-black m-0 p-0 ms-3 me-2" to={profileLink}>
-                <i className="bi bi-person-circle fs-2"></i>
-              </Link>
+              <>
+                <div className="d-flex align-items-center">
+                  <Link to="/wishlist">
+                    <i className="bi bi-heart me-2 fs-3 primary_color"></i>
+                  </Link>
+                  <Link to="/cart">
+                    <i className="bi bi-cart me-2 fs-3 primary_color"></i>
+                  </Link>
+                </div>
+                <Link className="text-black m-0 p-0 me-2" to={profileLink}>
+                  <i className="bi bi-person-circle fs-3 primary_color"></i>
+                </Link>
+              </>
             ) : (
-              <Link to="/login">
-                <button className="custom-btn">Login</button>
-              </Link>
+              <>
+                <Link to="/login">
+                  <button className="custom-btn">Login</button>
+                </Link>
+              </>
             )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>

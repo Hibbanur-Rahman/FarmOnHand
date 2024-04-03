@@ -5,7 +5,7 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Orders from './Orders';
 import AccountDetails from './AcountDetails';
-import Address from './Address';
+import {Address,BillingAddress,ShippingAddress} from './Address';
 import {toast} from 'react-toastify'
 
 export default function User() {
@@ -55,6 +55,10 @@ export default function User() {
             <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/orders' element={<Orders/>} />
             <Route path='/address' element={<Address/>} />
+            <Route path='/address' element={<Address/>} />
+            <Route path="/billing-address" element={<BillingAddress />}/>
+            <Route path="/shipping-address" element={<ShippingAddress />}/>
+       
             <Route path='/account-details' element={<AccountDetails/>} />
           </Routes>
         </Col>
