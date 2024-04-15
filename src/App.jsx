@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import User from './views/userDashboard/User'
 import Vegetables from './views/Vegetables'
 import Fruits from './views/Fruits'
+import Farmer from './views/farmerDashboard/Farmer'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/cart/:productId" element={<Cart />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/user/*" element={<User />} />
+          <Route path="/farmer/*" element={<Farmer/>} />
           <Route path="/vegetables" element={<Vegetables />} />
           <Route path="/fruits" element={<Fruits />} />
 
