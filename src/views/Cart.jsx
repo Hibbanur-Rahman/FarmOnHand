@@ -42,34 +42,32 @@ export default function Cart() {
                         <p className="mb-0">You have 4 items in your cart</p>
                     </div>
 
-                    {productItem && (
-                        <Card className="mb-3">
-                            <CardBody>
-                                <div className="d-flex justify-content-between">
-                                    <div className="d-flex flex-row align-items-center">
-                                        <div className="border rounded me-2 p-2">
-                                            <img
-                                                src={`./images/Featured_Product/${productItem.imageId}.png`}
-                                                className="rounded-3" width={"70px"}
-                                                alt="Shopping item" />
-                                        </div>
-                                        {productItem.name}
+                    <Card className="mb-3">
+                        <CardBody>
+                            <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-row align-items-center">
+                                    <div className="border rounded me-2 p-2">
+                                        <img
+                                            src={`./images/Featured_Product`}
+                                            className="rounded-3" width={"70px"}
+                                            alt="Shopping item" />
                                     </div>
-                                    <div className="d-flex flex-row align-items-center">
-                                        <div style={{ width: "50px" }}>
-                                            2
-                                        </div>
-                                        <div style={{ width: "80px" }}>
-                                            ₹{productItem.price}
-                                        </div>
-                                        <Link to="#" className='text-decoration-none'>
-                                            <i className="bi bi-trash-fill"></i>
-                                        </Link>
-                                    </div>
+                                    name
                                 </div>
-                            </CardBody>
-                        </Card>
-                    )}
+                                <div className="d-flex flex-row align-items-center">
+                                    <div style={{ width: "50px" }}>
+                                        quantity
+                                    </div>
+                                    <div style={{ width: "80px" }}>
+                                    ₹price
+                                    </div>
+                                    <Link to="#" className='text-decoration-none'>
+                                        <i className="bi bi-trash-fill"></i>
+                                    </Link>
+                                </div>
+                            </div>
+                        </CardBody>
+                    </Card>
 
                 </Col>
 
@@ -77,8 +75,8 @@ export default function Cart() {
                     <Card className="border rounded">
                         <CardBody>
                             <h5>Cart totals</h5>
-                            <p>${totalPrice}</p>
-                            <p>${totalPrice}</p>
+                            <p>₹totalPrice</p>
+                            <p>₹totalPrice</p>
 
 
                             <div className="text-center">
