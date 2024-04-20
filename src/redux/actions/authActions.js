@@ -4,3 +4,10 @@ export const loginUser=(user)=>{
         payload:{isAuthenticated:true,user},
     }
 }
+
+export const logoutUser=()=>{
+    return {
+        type:'LOGOUT_SUCCESS',
+        payload:{isAuthenticated:false,user:null},
+    }
+}

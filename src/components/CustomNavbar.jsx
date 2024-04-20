@@ -14,6 +14,7 @@ function CustomNavbar() {
   const [isUser, setIsUser] = useState(false);
   const [profileLink, setProfileLink] = useState(null);
   const currentUser=useSelector((state)=>state.auth.isAuthenticated);
+  console.log(currentUser);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
