@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import VARIABLES from "../../environmentVariables";
+import { useDispatch } from "react-redux";
+import {loginUser} from '../redux/actions/authActions';
+
 function Login() {
+  const dispatch=useDispatch();
   const [validated, setValidated] = useState(false);
   const [userData, setUserData] = useState({
     password: "",
@@ -31,6 +35,8 @@ function Login() {
             password: "",
             email: "",
           });
+          //Dispatch action to Redux store
+          dispatch(loginUser(response.data.data));
           setTimeout(() => {
             if (response.data.data.role === "user") {
           

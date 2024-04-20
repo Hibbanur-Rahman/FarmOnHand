@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import { Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import CustomNavbar from './components/CustomNavbar'
@@ -20,7 +22,7 @@ import Farmer from './views/farmerDashboard/Farmer'
 function App() {
 
   return (
-    <>
+    <Provider store={store}>
       <Container>
         <CustomNavbar />
         <Routes>
@@ -41,7 +43,7 @@ function App() {
       </Container>
       <Footer />
       <ToastContainer />
-    </>
+    </Provider>
   )
 }
 

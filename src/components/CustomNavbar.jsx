@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { decode } from "jwt-js-decode";
-
+import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,7 +13,7 @@ import "../App.css";
 function CustomNavbar() {
   const [isUser, setIsUser] = useState(false);
   const [profileLink, setProfileLink] = useState(null);
-
+  const currentUser=useSelector((state)=>state.auth.isAuthenticated);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -23,7 +23,7 @@ function CustomNavbar() {
     } else {
       setIsUser(false);
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary border rounded my-3">
