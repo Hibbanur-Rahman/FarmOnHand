@@ -11,6 +11,7 @@ function Register() {
     password: "",
     phone: "",
     email: "",
+    role:'',
     agreed: false,
   });
 
@@ -56,6 +57,7 @@ function Register() {
       password: "",
       phone: "",
       email: "",
+      role:'',
       agreed: false,
     });
     setValidated(false);
@@ -156,13 +158,18 @@ function Register() {
           </Form.Group>
           <Form.Group controlId="validationRole" className="mb-3">
             <Form.Label>Your role</Form.Label>
-            <Form.Select aria-label="Default select example" className="mb-3">
+            <Form.Select
+              aria-label="Default select example"
+              className="mb-3"
+              name="role"
+              value={userDetails.role}
+              onChange={handleInputChange}
+            >
               <option>Select your role</option>
-              <option value="consumer">Consumer</option>
+              <option value="user">Consumer</option>
               <option value="farmer">Farmer</option>
             </Form.Select>
           </Form.Group>
-
 
           <Form.Group controlId="validationCustomAgreement" className="mb-3">
             <Form.Check

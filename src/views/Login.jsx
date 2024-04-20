@@ -45,6 +45,9 @@ function Login() {
             } else if (response.data.data.role === "admin") {
               window.location.href = "/FarmOnHand/#/admin/";
             }
+            else if (response.data.data.role === "farmer") {
+              window.location.href = "/FarmOnHand/#/farmer/";
+            }
           }, 1000);
         } else {
           toast.error(response.data.message);
