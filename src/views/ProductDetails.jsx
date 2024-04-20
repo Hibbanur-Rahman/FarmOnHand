@@ -10,11 +10,27 @@ import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
 import { Col, Form, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { product } from '../utils/data';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import VARIABLES from '../../environmentVariables';
 
 export default function ProductDetails() {
     const { productId } = useParams();
     const [productItem, setProductItem] = useState(null);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+    const handleProductDetails=async()=>{
+        try{
+            const response= await axios.post(`${VARIABLES.API_URL_REMOTE}/view-product-Id`,{productId});
+            console.log(response);
+            if(response.status===200){
+                setProductItem(response.data.data);
+            }
+        }catch(error){
+            console.log(error)
+            toast.error("Failed to view!!");
+        }
+    }
 
     useEffect(() => {
 
@@ -28,6 +44,7 @@ export default function ProductDetails() {
             // Handle case where product is not found
             console.log('Product not found');
         }
+        handleProductDetails();
     }, [productId]); // Re-run effect when productId changes
     console.log(productItem)
 
@@ -43,7 +60,7 @@ export default function ProductDetails() {
                         >
                             {productItem && (
                                 <SwiperSlide>
-                                    <img src={`./images/Featured_Product/${productItem.imageId}.png`} alt={productItem.imageId} className='w-100' />
+                                    <img src={`${VARIABLES.API_URL_REMOTE}/uploads/${productItem.productImage}`} alt={productItem.productImage} className='w-100' />
                                 </SwiperSlide>
 
                             )}
@@ -94,12 +111,12 @@ export default function ProductDetails() {
                                     required
                                 />
                             </div>
-                            <Link to={{ pathname: `/cart/${productItem.id}`, state: { product: productItem } }} className='text-decoration-none'>
+                            <Link to={{ pathname: `/cart/${productItem._id}`, state: { product: productItem } }} className='text-decoration-none'>
                                 <button type="button" className='btn_filled'>Add to cart</button>
                             </Link>
                             <hr />
 
-                            <p>Category : <span className='text-secondary'>{productItem.type}</span></p>
+                            <p>Category : <span className='text-secondary'>{productItem.category.name}</span></p>
 
                             <div className="card_div d-block border rounded p-3">
                                 <h6 className='primary_color ps-2'>Guaranteed Safe Checkout</h6>

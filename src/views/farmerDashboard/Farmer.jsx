@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import "../../App.css"
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
@@ -8,13 +9,16 @@ import Products from './Products';
 import AccountDetails from './AcountDetails';
 import Cookies from 'js-cookie';
 import {toast} from 'react-toastify'
-
+import {logoutUser} from '../../redux/actions/authActions';
 export default function Farmer() {
+  const dispatch=useDispatch();
   const location = useLocation();
   const handleLogout = () => {
     localStorage.removeItem("token");
    toast.success("logout successfully");
+   dispatch(logoutUser());
    setTimeout(() => {
+    
      window.location.href = "/FarmOnHand/#/";
    }, 1000);
  };
