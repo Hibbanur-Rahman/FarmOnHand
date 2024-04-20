@@ -154,11 +154,16 @@ function Register() {
               Please provide a valid phone number.
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Select aria-label="Default select example" className="mb-3">
-            <option>Select your role</option>
-            <option value="consumer">Consumer</option>
-            <option value="farmer">Farmer</option>
-          </Form.Select>
+          <Form.Group controlId="validationRole" className="mb-3">
+            <Form.Label>Your role</Form.Label>
+            <Form.Select aria-label="Default select example" className="mb-3">
+              <option>Select your role</option>
+              <option value="consumer">Consumer</option>
+              <option value="farmer">Farmer</option>
+            </Form.Select>
+          </Form.Group>
+
+
           <Form.Group controlId="validationCustomAgreement" className="mb-3">
             <Form.Check
               required
