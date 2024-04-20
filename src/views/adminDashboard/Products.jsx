@@ -9,7 +9,7 @@ import VARIABLES from "../../../environmentVariables";
 const columns = [
     {
       name: "Image",
-      selector: (row) => <img src={row.productImage} alt="Product" />,
+      selector: (row) => <img src={`${VARIABLES.API_URL_REMOTE}/uploads/${row.productImage}`} alt="Product" style={{width:'100px'}} />,
       sortable: true,
     },
     {

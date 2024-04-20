@@ -72,6 +72,7 @@ function Login() {
                 name="email"
                 onChange={handleInputChange}
                 value={userData.email}
+                
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a valid username or email.
