@@ -18,6 +18,7 @@ import User from './views/userDashboard/User'
 import Vegetables from './views/Vegetables'
 import Fruits from './views/Fruits'
 import Farmer from './views/farmerDashboard/Farmer'
+import Wishlist from './views/Wishlist';
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
           <Route path="/farmer/*" element={<Farmer/>} />
           <Route path="/vegetables" element={<Vegetables />} />
           <Route path="/fruits" element={<Fruits />} />
+          <Route path="/wishlist" element={<Wishlist/>} />
+
 
 
         </Routes>
