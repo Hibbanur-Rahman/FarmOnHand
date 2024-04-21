@@ -119,3 +119,27 @@
   background-color: #1b8057;
   color: #fff;
 }
+
+.increment:hover {
+  cursor: pointer;
+  background-color: #ecebeb;
+}
+
+.decrement:hover {
+  cursor: pointer;
+  background-color: #ecebeb;
+}
+
+.product-image {
+  position: relative;
+  height: 80px !important;
+  width: 80px !important;
+}
+.product-image img {
+  height: 100% !important;
+  width: 100% !important;
+}
+.product-image .quantity-badge {
+  right: -10px !important;
+  top: -10px;
+}
