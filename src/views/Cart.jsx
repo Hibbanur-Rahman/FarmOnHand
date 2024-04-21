@@ -59,7 +59,7 @@ export default function Cart() {
                                         quantity
                                     </div>
                                     <div style={{ width: "80px" }}>
-                                    ₹price
+                                        ₹price
                                     </div>
                                     <Link to="#" className='text-decoration-none'>
                                         <i className="bi bi-trash-fill"></i>
@@ -80,9 +80,11 @@ export default function Cart() {
 
 
                             <div className="text-center">
-                                <button className='btn_filled'>
-                                    Checkout
-                                </button>
+                                <Link to='/checkout'>
+                                    <button className='btn_filled'>
+                                        Checkout
+                                    </button>
+                                </Link>
                             </div>
                         </CardBody>
                     </Card>
