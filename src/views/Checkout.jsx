@@ -7,6 +7,10 @@ import VARIABLES from "../../environmentVariables";
 function Checkout() {
   const [cartList, setCartList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [paymentError, setPaymentError] = useState(null);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentType, setPaymentType] = useState("");
+
   const [BillingAddressDetails, setBillingAddressDetails] = useState({
     firstname: "",
     lastname: "",
@@ -121,6 +125,50 @@ function Checkout() {
       [e.target.name]: e.target.value,
     });
   };
+
+  // Handle payment submission
+
+  const handlePayment = async () => {
+    try {
+      handleBillingAddress();
+      const token = localStorage.getItem("token");
+      const stripe = await loadStripe(
+        "pk_test_51NiiOgSAsO3Y0PmoXLtoCmw8jcEGuCd8XRFykRDonK0TLaRfEHObkFfenaBGl8TjnDGDnJoOctFSHVvmCJueZQKB001KX6rK3N"
+      );
+      const response = await axios.post(
+        `${VARIABLES.API_URL_REMOTE}/payment`,
+        { items: cartList },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      const result = stripe.redirectToCheckout({
+        sessionId: response.data.id, // Assuming the session ID is returned directly in the response data
+      });
+      if (result.error) {
+        console.log(result.error);
+        toast.error(result.error);
+      }
+    } catch (error) {
+        toast.error("Error processing payment:", error)
+      console.error("Error processing payment:", error);
+      setPaymentError("Error processing payment. Please try again later.");
+    }
+  };
+
+  const handleSubmit = async () => {};
+  const handlePaymentType = (e) => {
+    if (e.target.value === "cashOnDelivery") {
+      // Set the selected payment type to "cashOnDelivery"
+      setPaymentType("cashOnDelivery");
+    } else if (e.target.value === "onlinePayment") {
+      // Set the selected payment type to "onlinePayment"
+      setPaymentType("onlinePayment");
+    }
+  };
+
   useEffect(() => {
     handleViewBillingAddress();
     handleCartListView();
@@ -141,7 +189,7 @@ function Checkout() {
           <form
             action="/add-billing-address"
             method="post"
-            onSubmit={handleBillingAddress}
+            onSubmit={handleSubmit}
           >
             <div className="row m-0 p-0">
               <div className="m-0 p-0 mb-3 col-12 pe-0">
@@ -301,36 +349,49 @@ function Checkout() {
                 />
               </div>
             </div>
-            <div className="row m-0 p-0">
-              <div className="form-check mt-2 mb-3">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label className="form-check-label" for="flexRadioDefault1">
-                  Cash on delivery
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                />
-                <label className="form-check-label" for="flexRadioDefault2">
-                  Online payment
-                </label>
-              </div>
+            <div className="form-check mt-2 mb-3">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="paymentType"
+                id="cashOnDelivery"
+                value="cashOnDelivery"
+                onChange={handlePaymentType}
+              />
+              <label className="form-check-label" htmlFor="cashOnDelivery">
+                Cash on delivery
+              </label>
             </div>
-            <div className="text-end">
-              <Link to="/order-details">
-                <button className="btn_filled text-light mt-3" type="submit">
-                  Place order
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="paymentType"
+                id="onlinePayment"
+                value="onlinePayment"
+                onChange={handlePaymentType}
+              />
+              <label className="form-check-label" htmlFor="onlinePayment">
+                Online payment
+              </label>
+            </div>
+
+            <div className="row m-0 p-0  justify-content-end">
+              {paymentType === "cashOnDelivery" ? (
+                <Link to="/order-details" className="w-auto">
+                  <button className="btn_filled text-light mt-3" type="button">
+                    Place order
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  className="btn_filled text-light mt-3 w-auto"
+                  type="button"
+                  onClick={handlePayment}
+                >
+                  Pay with Card
                 </button>
-              </Link>
+              )}
             </div>
           </form>
         </div>
@@ -377,7 +438,9 @@ function Checkout() {
               </div>
               <div className="d-flex ">
                 <p className="w-50 text-start">Total</p>
-                <p className="w-50 text-end">₹{totalAmount+30} (includes Gst ₹30 )</p>
+                <p className="w-50 text-end">
+                  ₹{totalAmount + 30} (includes Gst ₹30 )
+                </p>
               </div>
             </div>
           </div>

@@ -174,7 +174,7 @@ export default function Cart() {
 
           <div className="mb-3">
             <p className="mb-1">Shopping cart</p>
-            <p className="mb-0">You have 4 items in your cart</p>
+            <p className="mb-0">You have {cartList.length} items in your cart</p>
           </div>
 
           {Array.isArray(cartList) &&
